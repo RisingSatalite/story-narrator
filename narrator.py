@@ -64,6 +64,7 @@ class MyApp(App):
         grid_layout.bind(minimum_height=grid_layout.setter('height'))
 
         story_list = []
+        list_files_in_folder()
         with open('Story.txt', 'r') as file:
             for line in file:
                 story_list.append(line.replace('\n', ''))
