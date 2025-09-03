@@ -74,7 +74,8 @@ class MyApp(App):
             new_button.bind(on_press=lambda instance, idx=i: self.button_save_title(idx))
             grid_layout.add_widget(new_button)
 
-        scroll_view.add_widget(grid_layout)
+        self.grid_layout = grid_layout  # Save reference for later modification
+        scroll_view.add_widget(self.grid_layout)
         layout.add_widget(scroll_view)
 
         return layout
@@ -135,6 +136,24 @@ class MyApp(App):
 
         popup = Popup(title=f'Playing {self.story_title}', content=popup_content, size_hint=(0.9, 0.9))
         popup.open()
+
+    def refresh_story_list(self, instance):
+        grid_layout = GridLayout(cols=4, spacing=1, size_hint_y=None)
+        grid_layout.bind(minimum_height=grid_layout.setter('height'))
+
+        story_list = []
+        list_files_in_folder()
+        with open('Story.txt', 'r') as file:
+            for line in file:
+                story_list.append(line.replace('\n', ''))
+
+        for i in story_list:
+            button_text = f" {i} "
+            new_button = Button(text=button_text, size_hint_y=None, height=400)
+            new_button.bind(on_press=lambda instance, idx=i: self.button_save_title(idx))
+            grid_layout.add_widget(new_button)
+
+        self.grid_layout = grid_layout
 
 if __name__ == '__main__':
     MyApp().run()
