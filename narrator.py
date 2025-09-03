@@ -53,9 +53,16 @@ class MyApp(App):
         #self.label = Label(text="Hello, Kivy!")
         #layout.add_widget(self.label)
 
-        play_button = Button(text="Play story", size_hint_y=None, height=200)
+        layoutTop = BoxLayout(orientation='horizontal', size_hint_y=None, height=180)
+
+        play_button = Button(text="Play story")
         play_button.bind(on_press=self.story_player)
-        layout.add_widget(play_button)
+        layoutTop.add_widget(play_button)
+
+        settings = Button(text="Settings", width=180)
+        layoutTop.add_widget(settings)
+
+        layout.add_widget(layoutTop)
 
         scroll_view = ScrollView()
 
