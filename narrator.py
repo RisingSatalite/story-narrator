@@ -41,7 +41,6 @@ def list_files_in_folder(folder_path='Story'):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
-
 class MyApp(App):
 
     def build(self):
@@ -80,39 +79,9 @@ class MyApp(App):
 
         return layout
 
-    #Legacy
-    def button_click(self, instance):
-        print("Button Clicked!")
-        
-        with open('Story/cat.txt', 'r') as file:
-    # Iterate over each line in the file
-            for line in file:
-        # Process the line (replace print with your desired operation)
-                print(line)
-
-    def button_click_title(self, title):
-        print("Button Clicked!")
-        
-        with open(f'Story/{title}.txt', 'r') as file:
-    # Iterate over each line in the file
-            for line in file:
-        # Process the line (replace print with your desired operation)
-                self.engine.say(line)
-                self.engine.runAndWait()
-                print(line)
-
     def button_save_title(self, title):
         self.story_title = title
         print(title)
-
-    def play_from_title_backup(self):
-        with open(f'Story/{self.story_title}.txt', 'r') as file:
-    # Iterate over each line in the file
-            for line in file:
-        # Process the line (replace print with your desired operation)
-                self.engine.say(line)
-                self.engine.runAndWait()
-                print(line)
 
     def play_from_title(self):
         with open(f'Story/{self.story_title}.txt', 'r') as file:
